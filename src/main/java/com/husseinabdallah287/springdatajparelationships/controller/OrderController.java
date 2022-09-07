@@ -16,7 +16,7 @@ import com.husseinabdallah287.springdatajparelationships.models.Order;
 import com.husseinabdallah287.springdatajparelationships.repository.OrderRepository;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/orders/")
 public class OrderController {
 	
 	@Autowired

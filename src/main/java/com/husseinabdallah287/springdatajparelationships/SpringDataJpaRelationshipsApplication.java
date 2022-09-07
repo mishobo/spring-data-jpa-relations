@@ -9,5 +9,5 @@ public class SpringDataJpaRelationshipsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataJpaRelationshipsApplication.class, args);
 	}
-
+	
 }

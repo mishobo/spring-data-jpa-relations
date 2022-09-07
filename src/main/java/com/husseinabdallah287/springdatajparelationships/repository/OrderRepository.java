@@ -1,4 +1,4 @@
-package com.husseinabdallah287.springdatajparelationships.models.repository;
+package com.husseinabdallah287.springdatajparelationships.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

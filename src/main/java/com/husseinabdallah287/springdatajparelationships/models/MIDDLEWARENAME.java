@@ -1,0 +1,7 @@
+package com.husseinabdallah287.springdatajparelationships.models;
+
+public enum MIDDLEWARENAME {
+	AVENUE, MATER, NAIROBIHOSPITAL, GETRUDES, MPSHAH, METROPOLITAN, AGAKHANKISUMU, AGAKHANMOMBASA,
+	AGAKHANNAIROBI, NONE
+
+}

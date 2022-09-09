@@ -32,7 +32,7 @@ public class ReportService{
 		
 		List<Employee> employees = employeeRepository.findAll();
 		
-		File file = ResourceUtils.getFile("classpath: ReportService");
+		File file = ResourceUtils.getFile("E:\\projects\\spring-data-jpa-relationships\\spring-data-jpa-relationships\\employeeReport.jrxml");
 		JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(employees);
 		Map<String, Object> parameters = new HashMap<>();

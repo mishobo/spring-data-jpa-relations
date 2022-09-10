@@ -8,6 +8,6 @@ import com.husseinabdallah287.springdatajparelationships.models.Visit;
 
 public interface VisitRepository extends JpaRepository<Visit, Long> {
 
-	public List<Visit> findByMemberNumber(String memberNumber);
+	 List<Visit> findByMemberNumberLike(String familyNumber);
 	
 }

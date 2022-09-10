@@ -20,13 +20,19 @@ public class VisitController {
 	
     @GetMapping("/getClaimsByMemberNumber/{memberNumber}")
     public List<Visit> getClaimsByMemberNumber(@PathVariable(value="memberNumber") String memberNumber) {
-        return visitRepository.findByMemberNumber(memberNumber);
+    	String familyNumber = splitPJ(memberNumber) + "%";
+    	System.out.println(familyNumber);
+        return visitRepository.findByMemberNumberLike(familyNumber);
     }
     
-//	@GetMapping("/getOrderById/{id}")
-//	public Optional<Order> getOrderById(@PathVariable(value="id") Long orderId ) {
-//		return orderRepository.findById(orderId);
-//	}
-//    
+    
+    public static String splitPJ(String memberNo){
+    	System.out.println("Heloooo "+memberNo);
+    	String str1=memberNo.substring(0,memberNo.length());
+    	String result[]=str1.split("-");
+    	return result[0].toString();
+    	
+    }
+      
 }
 

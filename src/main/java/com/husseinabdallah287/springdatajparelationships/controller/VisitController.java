@@ -1,5 +1,6 @@
 package com.husseinabdallah287.springdatajparelationships.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.husseinabdallah287.springdatajparelationships.models.Visit;
 import com.husseinabdallah287.springdatajparelationships.repository.VisitRepository;
+import com.husseinabdallah287.springdatajparelationships.service.ReportService;
+
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @RequestMapping("/api/visit/")
@@ -17,6 +24,20 @@ public class VisitController {
 	
 	@Autowired
 	private VisitRepository visitRepository;
+	
+	@Autowired
+	private ReportService reportService;
+	
+	
+    @GetMapping("/report/{memberNumber}/{format}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response generateReport(@PathVariable String memberNumber, @PathVariable String format) throws JRException, 
+    IOException {
+    	String familyNumber = splitPJ(memberNumber) + "%";
+    	System.out.println("familyNumber :" + familyNumber);
+    	System.out.println("format :" + format);
+        return reportService.exportMemberStatement(familyNumber, format);
+    }
 	
     @GetMapping("/getClaimsByMemberNumber/{memberNumber}")
     public List<Visit> getClaimsByMemberNumber(@PathVariable(value="memberNumber") String memberNumber) {

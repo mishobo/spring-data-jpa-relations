@@ -8,9 +8,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
+	
+	private Path foundFile;
 	
     public static String saveFile(String fileName, MultipartFile multipartFile)
             throws IOException {
@@ -32,5 +36,23 @@ public class FileUploadUtil {
         return fileCode;
     }
 	
+    public Resource getFileAsResource(String fileCode) throws IOException {
+        Path dirPath = Paths.get("E:\\projects\\fileUploads\\");
+         
+        Files.list(dirPath).forEach(file -> {
+            if (file.getFileName().toString().startsWith(fileCode)) {
+                foundFile = file;
+                return;
+            }
+        });
+ 
+        if (foundFile != null) {
+            return new UrlResource(foundFile.toUri());
+        }
+         
+        return null;
+    }
+    
+    
 
 }

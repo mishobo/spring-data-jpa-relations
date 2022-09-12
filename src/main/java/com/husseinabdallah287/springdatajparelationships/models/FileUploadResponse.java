@@ -1,12 +1,5 @@
 package com.husseinabdallah287.springdatajparelationships.models;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class FileUploadResponse {
 
     private String fileName;

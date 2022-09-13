@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.husseinabdallah287.springdatajparelationships.models.MemberStatementDTO;
 import com.husseinabdallah287.springdatajparelationships.models.Visit;
 import com.husseinabdallah287.springdatajparelationships.repository.VisitRepository;
 import com.husseinabdallah287.springdatajparelationships.service.ReportService;
@@ -44,6 +45,11 @@ public class VisitController {
     	String familyNumber = splitPJ(memberNumber) + "%";
     	System.out.println(familyNumber);
         return visitRepository.findByMemberNumberLike(familyNumber);
+    }
+    
+    @GetMapping("/memberStatementData/{memberNumber}")
+    public List<MemberStatementDTO> memberStatementData(@PathVariable(value="memberNumber") String memberNumber) {
+        return visitRepository.findByMemberNumber(memberNumber);
     }
     
     

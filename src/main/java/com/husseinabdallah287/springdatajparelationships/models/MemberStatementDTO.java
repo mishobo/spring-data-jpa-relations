@@ -1,18 +1,52 @@
 package com.husseinabdallah287.springdatajparelationships.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-public class MemberStatement {
+
+public class MemberStatementDTO {
 	private String memberName;
 	private String memberNumber;
 	private String benefitName;
 	private String payerId;
 	private BigDecimal totalInvoiceAmount;
 	private String invoiceNumber;
-	private String createdAt;
-	private String hospitalProviderId;
+	private LocalDateTime createdAt;
+	private Long hospitalProviderId;
+	private String aggregateId;	
+	private BigDecimal initialLimit;
+
+	public MemberStatementDTO(String memberName, String memberNumber, String benefitName, String payerId,
+			BigDecimal totalInvoiceAmount, String invoiceNumber, LocalDateTime createdAt, Long hospitalProviderId,
+			String aggregateId, BigDecimal initialLimit) {
+		super();
+		this.memberName = memberName;
+		this.memberNumber = memberNumber;
+		this.benefitName = benefitName;
+		this.payerId = payerId;
+		this.totalInvoiceAmount = totalInvoiceAmount;
+		this.invoiceNumber = invoiceNumber;
+		this.createdAt = createdAt;
+		this.hospitalProviderId = hospitalProviderId;
+		this.aggregateId = aggregateId;
+		this.initialLimit = initialLimit;
+	}
 	
-	
+	public BigDecimal getInitialLimit() {
+		return initialLimit;
+	}
+
+	public void setInitialLimit(BigDecimal initialLimit) {
+		this.initialLimit = initialLimit;
+	}
+
+	public String getAggregateId() {
+		return aggregateId;
+	}
+	public void setAggregateId(String aggregateId) {
+		this.aggregateId = aggregateId;
+	}
+
 	public String getMemberName() {
 		return memberName;
 	}
@@ -49,16 +83,16 @@ public class MemberStatement {
 	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
-	public String getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	public String getHospitalProviderId() {
+	public Long getHospitalProviderId() {
 		return hospitalProviderId;
 	}
-	public void setHospitalProviderId(String hospitalProviderId) {
+	public void setHospitalProviderId(Long hospitalProviderId) {
 		this.hospitalProviderId = hospitalProviderId;
 	}
 	

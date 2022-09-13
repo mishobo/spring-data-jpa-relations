@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class VisitController {
 	
     @GetMapping("/report/{memberNumber}/{format}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response generateReport(@PathVariable String memberNumber, @PathVariable String format) throws JRException, 
+    public ResponseEntity<byte[]> generateReport(@PathVariable String memberNumber, @PathVariable String format) throws JRException, 
     IOException {
     	String familyNumber = splitPJ(memberNumber) + "%";
     	System.out.println("familyNumber :" + familyNumber);

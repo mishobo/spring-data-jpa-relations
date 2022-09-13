@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -18,12 +21,6 @@ import com.husseinabdallah287.springdatajparelationships.models.Visit;
 import com.husseinabdallah287.springdatajparelationships.repository.EmployeeRepository;
 import com.husseinabdallah287.springdatajparelationships.repository.VisitRepository;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -34,7 +31,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
-@WebServlet("/StudentServlet")
 public class ReportService{
 
 	@Autowired
@@ -67,7 +63,7 @@ public class ReportService{
 	}
 	
 	
-	public Response exportMemberStatement(String familyNumber, String format) throws JRException, IOException {
+	public ResponseEntity<byte[]>  exportMemberStatement(String familyNumber, String format) throws JRException, IOException {
 		
 		String path = "E:\\LCT\\version 2\\pdf statements";
 		
@@ -86,7 +82,14 @@ public class ReportService{
         if (format.equalsIgnoreCase("pdf")) {
         	String filePath = path + "employees.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
-                
+            
+            byte data[] = JasperExportManager.exportReportToPdf(jasperPrint);
+            
+            System.err.println(data);
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+            return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);
         }
 		return null;
 		

@@ -64,8 +64,7 @@ public class ReportService{
 	
 	
 	public ResponseEntity<byte[]>  exportMemberStatement(String familyNumber, String format) throws JRException, IOException {
-		
-		String path = "E:\\LCT\\version 2\\pdf statements";
+	
 		
 		List<Visit> claims = visitRepository.findByMemberNumberLike(familyNumber);
 	
@@ -77,11 +76,8 @@ public class ReportService{
 		parameters.put("createdBy", "Java Techie");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         if (format.equalsIgnoreCase("html")) {
-            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\employees.html");
         }
         if (format.equalsIgnoreCase("pdf")) {
-        	String filePath = path + "employees.pdf";
-            JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
             
             byte data[] = JasperExportManager.exportReportToPdf(jasperPrint);
             

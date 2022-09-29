@@ -14,11 +14,15 @@ public class MemberStatementDTO {
 	private LocalDateTime createdAt;
 	private Long hospitalProviderId;
 	private String aggregateId;	
+	private BigDecimal balanceAmount;
 	private BigDecimal initialLimit;
+	private BigDecimal balance;
 
+	
+	
 	public MemberStatementDTO(String memberName, String memberNumber, String benefitName, String payerId,
 			BigDecimal totalInvoiceAmount, String invoiceNumber, LocalDateTime createdAt, Long hospitalProviderId,
-			String aggregateId, BigDecimal initialLimit) {
+			String aggregateId, BigDecimal balanceAmount, BigDecimal initialLimit, BigDecimal balance) {
 		super();
 		this.memberName = memberName;
 		this.memberNumber = memberNumber;
@@ -29,9 +33,40 @@ public class MemberStatementDTO {
 		this.createdAt = createdAt;
 		this.hospitalProviderId = hospitalProviderId;
 		this.aggregateId = aggregateId;
+		this.balanceAmount = balanceAmount;
 		this.initialLimit = initialLimit;
+		this.balance = balance;
 	}
+
+
+
 	
+	public BigDecimal getBalanceAmount() {
+		return balanceAmount;
+	}
+
+
+
+
+	public void setBalanceAmount(BigDecimal balanceAmount) {
+		this.balanceAmount = balanceAmount;
+	}
+
+
+
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+
+
+
 	public BigDecimal getInitialLimit() {
 		return initialLimit;
 	}

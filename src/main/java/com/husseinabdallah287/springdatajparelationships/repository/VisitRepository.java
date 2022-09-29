@@ -16,7 +16,7 @@ public interface VisitRepository extends JpaRepository<Visit, Long> {
 	 
 	 @Query("SELECT new com.husseinabdallah287.springdatajparelationships.models.MemberStatementDTO(v.memberName, "
 	 		+ "v.memberNumber, v.benefitName, v.payerId, v.totalInvoiceAmount,v.invoiceNumber, v.createdAt, "
-	 		+ "v.hospitalProviderId, v.aggregateId, bb.initialLimit) FROM Visit v inner join BeneficiaryBenefit bb on bb.aggregateId = v.aggregateId"
+	 		+ "v.hospitalProviderId, v.aggregateId, v.balanceAmount, bb.initialLimit, bb.balance) FROM Visit v inner join BeneficiaryBenefit bb on bb.aggregateId = v.aggregateId"
 	 		+ " where v.memberNumber = :memberNumber")
 	 List<MemberStatementDTO> findByMemberNumber(String memberNumber);
 	 

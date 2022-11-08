@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.husseinabdallah287.springdatajparelationships.models.MemberStatementDTO;
@@ -17,7 +18,7 @@ import com.husseinabdallah287.springdatajparelationships.service.ReportService;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+
 import net.sf.jasperreports.engine.JRException;
 
 @RestController
@@ -47,8 +48,9 @@ public class VisitController {
     	System.out.println(familyNumber);
         return visitRepository.findByMemberNumberLike(familyNumber);
     }
-    
-    @GetMapping("/memberStatementData/{memberNumber}")
+
+
+    @RequestMapping(value="/memberStatementData/{memberNumber}", method=RequestMethod.GET, produces={"application/json"})
     public List<MemberStatementDTO> memberStatementData(@PathVariable(value="memberNumber") String memberNumber) {
         return visitRepository.findByMemberNumber(memberNumber);
     }

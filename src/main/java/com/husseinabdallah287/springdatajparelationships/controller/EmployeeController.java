@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,16 +32,21 @@ public class EmployeeController {
 	private ReportService reportService;
 	
 	@PostMapping("/addEmployee")
+	@Consumes("application/json")
 	public Employee createOrder(@Valid @RequestBody Employee employee ) {
 		return employeeRepository.save(employee);
 	}
 	
+	
     @GetMapping("/getEmployees")
+    @Produces("application/json")
     public List<Employee> getEmployees() { 
+    	
         return employeeRepository.findAll();
     }
     
     @GetMapping("/report/{format}")
+    @Produces("application/json")
     public String generateReport(@PathVariable String format) throws FileNotFoundException, JRException {
         return reportService.exportReport(format);
     }
